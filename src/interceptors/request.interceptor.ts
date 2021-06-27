@@ -12,7 +12,7 @@ import { ProducerService } from '../producer/producer.service';
 @Injectable()
 export class RequestInterceptor implements NestInterceptor {
   private logger: Logger = new Logger(RequestInterceptor.name);
-  constructor(private readonly producerService: ProducerService) { }
+  constructor(private readonly producerService: ProducerService) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     console.log('Before...');

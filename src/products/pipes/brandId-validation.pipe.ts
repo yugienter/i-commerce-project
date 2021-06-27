@@ -11,7 +11,7 @@ import { BrandsService } from '../../brands/brands.service';
 
 @Injectable()
 export class BrandIdValidationPipe implements PipeTransform<any> {
-  constructor(private brandsService: BrandsService) { }
+  constructor(private brandsService: BrandsService) {}
 
   async transform(value: any, { metatype }: ArgumentMetadata) {
     if (!metatype || !this.toValidate(metatype)) {
