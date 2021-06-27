@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  postgres:
+    image: "postgres:9.6.1"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./_docker_volumes/pg_data:/var/lib/postgresql
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "iCommerce"
+
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    volumes:
+      - ./_docker_volumes/zookeeper/data:/data
+
+  kafka:
+    image: wurstmeister/kafka:2.12-2.5.0
+    container_name: kafka
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: LISTENER_DOCKER_INTERNAL://:19092,LISTENER_DOCKER_EXTERNAL://:9092
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://127.0.0.1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_BROKER_ID: 1
+      KAFKA_CREATE_TOPICS: sales-topic:1:1
+    volumes:
+      - ./_docker_volumes/kafka/data:/var/lib/kafka/data
+    depends_on:
+      - zookeeper
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - ./_docker_volumes/elasticsearch/data:/usr/share/elasticsearch/data
+
+  api:
+    build: .
+    image: i-commerce:0.0.1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - zookeeper
+      - kafka
+    env_file:
+      - .envdocker

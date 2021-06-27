@@ -1,0 +1,18 @@
+# KAFKA
+KAFKA_HOST=kafka
+KAFKA_PORT=19092
+KAFKA_TOPIC=sales-topic
+KAFKA_GROUP_ID=application-consumer
+KAFKA_CLIENT_ID=application-client
+
+# POSTGRES
+POSTGRES_HOST=postgres
+POSTGRES_POST=5432
+POSTGRES_USERNAME=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DATABASE=iCommerce
+
+# ES
+ES_HOST=elasticsearch
+ES_PORT=9200
+ES_INDEX=sales-topic
