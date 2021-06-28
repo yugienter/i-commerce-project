@@ -47,7 +47,7 @@ The formal description and representation of this application.
 <img src="_img/sequenceDiagram.jpg" alt="Sequence Diagram" />
 
 
-### Installation and Running
+## Installation and Running
 
 1. Clone source
 
@@ -70,9 +70,9 @@ press Ctrl+C
 docker-compose down
 ```
 
-### Usage
+## Usage
 
-## Brands
+### Brands
 1. Add brands
 ```sh
 curl -H  "accept: application/json" \
@@ -97,7 +97,7 @@ curl -H "Accept: application/json" \
 curl -H  "accept: application/json" -X DELETE "http://localhost:3000/brands/${brandId}"
 ```
 
-## Product
+### Product
 
 1. Create Product
 ```sh
@@ -122,7 +122,7 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET ht
 curl -H  "accept: application/json" -X DELETE "http://localhost:3000/products/${productId}"
 ```
 
-## Search
+### Search
 
 Search by
 criterion : - color, name, brand
