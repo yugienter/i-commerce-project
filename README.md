@@ -1,66 +1,137 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# nest-i-commerce-project
+### Built With
+* [Nest](https://github.com/nestjs/nest)
+* [Jest](https://github.com/facebook/jest)
+* [KafkaJS](https://github.com/tulios/kafkajs)
+* [Elasticsearch](https://www.npmjs.com/package/@elastic/elasticsearch)
+* [husky](https://github.com/typicode/husky)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Folder Structure Conventions
+============================
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+> Folder structure options and naming conventions for software projects
+### A typical top-level directory layout
+    .
+    ├── ...
+    ├── src/                                  # Source files
+    │   ├── brands/                           # Brands Module
+    │   ├── common/                           # Application-wide shared classes
+    │   ├── config/                            # Application-wide configuration variables
+    │   ├── consumer/                         # Kafka Consumer Module
+    │   ├── es/                               # ElasticSearch Module
+    │   ├── interceptors/                     # Application-wide Interceptors
+    │   ├── kafka/                            # Kafka Abstraction Module
+    │   ├── producer                          # Kafka Producer Module
+    │   ├── products/                         # Products Module
+    │   └── app.module.ts                     # Root Module
+    │   └── main.ts                           # The entry point of application
+    ├── test/                                 # Automated end-to-end testing module
+    ├── Dockerfile                             # Dockerfile for API service
+    ├── docker-compose.yml                    # Compose config file defining container services
+    ├── package.json                          # Config of npm
+    ├── package-log.json                      # Log of Config of npm -  need it to run docker
+    └── README.md
 
-## Description
+## System Architecture
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The formal description and representation of this application.
 
-## Installation
+<img src="_img/system.jpg" alt="System" />
 
-```bash
-$ npm install
+* Entity relationship diagram
+
+<img src="_img/entityRelationship.png" alt="System Components" />
+
+* Sequence diagram for API get Brand by its ID: <b>/brands/1</b>
+
+<img src="_img/sequenceDiagram.jpg" alt="Sequence Diagram" />
+
+
+### Installation and Running
+
+1. Clone source
+
+2. Navigate to source code directory
+```sh
+cd i-commerce-project/
 ```
 
-## Running the app
-
-```bash
-docker-compose build --no-cache
+3. Start docker comporse
+```sh
+docker-compose up
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+4. Stop docker comporse when done
+```sh
+press Ctrl+C
 ```
 
-## Support
+```sh
+docker-compose down
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Usage
 
-## Stay in touch
+## Brands
+1. Add brands
+```sh
+curl -H  "accept: application/json" \
+-H  "Content-Type: application/json" \
+-d "{\"name\":\"New Brand\",\"address\":\"USA\"}" \
+-X POST "http://localhost:3000/brands"
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+2. Get All Branch
+```sh
+curl -H  "accept: application/json" -X GET "http://localhost:3000/brands"
+```
 
-## License
+3. Get brand by Id
+```sh
+curl -H "Accept: application/json" \
+-X GET http://localhost:3000/brands/{$brandId}
+```
 
-Nest is [MIT licensed](LICENSE).
+4. Delete brand
+```sh
+curl -H  "accept: application/json" -X DELETE "http://localhost:3000/brands/${brandId}"
+```
+
+## Product
+
+1. Create Product
+```sh
+curl -H  "accept: application/json" \
+-H  "Content-Type: application/json" \
+-d "{\"name\":\"New Product\",\"status\":\"AVAILABLE\",\"price\":1000,\"color\":\"red\",\"brandId\":${brandId}}"\
+-X POST "http://localhost:3000/products"
+```
+
+2. Get ALL Product
+```sh
+curl -H  "accept: application/json" -X GET "http://localhost:3000/products"
+```
+
+3. Get Product By ID
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:3000/products/{$productId}
+```
+
+4. Delete Product
+```sh
+curl -H  "accept: application/json" -X DELETE "http://localhost:3000/products/${productId}"
+```
+
+## Search
+
+Search by
+criterion : - color, name, brand
+value : filter
+```sh
+curl -H "Accept: application/json" -X GET http://localhost:3000/search?criterion=color&value=red
+```
+
+Get all of search by client
+```sh
+curl -H  "accept: application/json" -X GET "http://localhost:3000/sales-topic"
+```

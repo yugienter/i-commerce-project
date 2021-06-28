@@ -62,7 +62,7 @@ services:
 
   api:
     build: .
-    image: i-commerce:0.0.1
+    image: nest-i-commerce:0.0.1
     ports:
       - "3000:3000"
     depends_on:
