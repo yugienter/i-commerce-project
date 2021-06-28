@@ -135,3 +135,13 @@ Get all of search by client
 ```sh
 curl -H  "accept: application/json" -X GET http://localhost:3000/sales-topic
 ```
+
+Elasticsearch
+```sh
+http://localhost:9200/
+```
+
+Kibana
+```sh
+http://localhost:5601/
+```
