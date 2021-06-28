@@ -43,7 +43,7 @@ The formal description and representation of this application.
 
 <img src="_img/entityRelationship.jpg" alt="System Components" />
 
-* Sequence diagram for API get Brand by its ID: <b>/brands/1</b>
+* Sequence diagram for API
 
 <img src="_img/sequenceDiagram.jpg" alt="Sequence Diagram" />
 
