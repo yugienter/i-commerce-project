@@ -4,6 +4,7 @@
 * [Jest](https://github.com/facebook/jest)
 * [KafkaJS](https://github.com/tulios/kafkajs)
 * [Elasticsearch](https://www.npmjs.com/package/@elastic/elasticsearch)
+* [Kibana](https://github.com/elastic/kibana)
 * [husky](https://github.com/typicode/husky)
 
 Folder Structure Conventions
