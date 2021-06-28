@@ -40,7 +40,7 @@ The formal description and representation of this application.
 
 * Entity relationship diagram
 
-<img src="_img/entityRelationship.png" alt="System Components" />
+<img src="_img/entityRelationship.jpg" alt="System Components" />
 
 * Sequence diagram for API get Brand by its ID: <b>/brands/1</b>
 
