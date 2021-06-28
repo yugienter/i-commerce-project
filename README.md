@@ -16,7 +16,7 @@ Folder Structure Conventions
     ├── src/                                  # Source files
     │   ├── brands/                           # Brands Module
     │   ├── common/                           # Application-wide shared classes
-    │   ├── config/                            # Application-wide configuration variables
+    │   ├── config/                           # Application-wide configuration variables
     │   ├── consumer/                         # Kafka Consumer Module
     │   ├── es/                               # ElasticSearch Module
     │   ├── interceptors/                     # Application-wide Interceptors
@@ -26,7 +26,7 @@ Folder Structure Conventions
     │   └── app.module.ts                     # Root Module
     │   └── main.ts                           # The entry point of application
     ├── test/                                 # Automated end-to-end testing module
-    ├── Dockerfile                             # Dockerfile for API service
+    ├── Dockerfile                            # Dockerfile for API service
     ├── docker-compose.yml                    # Compose config file defining container services
     ├── package.json                          # Config of npm
     ├── package-log.json                      # Log of Config of npm -  need it to run docker
