@@ -78,23 +78,23 @@ docker-compose down
 curl -H  "accept: application/json" \
 -H  "Content-Type: application/json" \
 -d "{\"name\":\"New Brand\",\"address\":\"USA\"}" \
--X POST "http://localhost:3000/brands"
+-X POST http://localhost:3000/brands
 ```
 
 2. Get All Branch
 ```sh
-curl -H  "accept: application/json" -X GET "http://localhost:3000/brands"
+curl -H  "accept: application/json" -X GET http://localhost:3000/brands
 ```
 
 3. Get brand by Id
 ```sh
-curl -H "Accept: application/json" \
+curl -H "accept: application/json" \
 -X GET http://localhost:3000/brands/{$brandId}
 ```
 
 4. Delete brand
 ```sh
-curl -H  "accept: application/json" -X DELETE "http://localhost:3000/brands/${brandId}"
+curl -H  "accept: application/json" -X DELETE http://localhost:3000/brands/${brandId}
 ```
 
 ### Product
@@ -104,22 +104,22 @@ curl -H  "accept: application/json" -X DELETE "http://localhost:3000/brands/${br
 curl -H  "accept: application/json" \
 -H  "Content-Type: application/json" \
 -d "{\"name\":\"New Product\",\"status\":\"AVAILABLE\",\"price\":1000,\"color\":\"red\",\"brandId\":${brandId}}"\
--X POST "http://localhost:3000/products"
+-X POST http://localhost:3000/products
 ```
 
 2. Get ALL Product
 ```sh
-curl -H  "accept: application/json" -X GET "http://localhost:3000/products"
+curl -H  "accept: application/json" -X GET http://localhost:3000/products
 ```
 
 3. Get Product By ID
 ```sh
-curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:3000/products/{$productId}
+curl -H "accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:3000/products/{$productId}
 ```
 
 4. Delete Product
 ```sh
-curl -H  "accept: application/json" -X DELETE "http://localhost:3000/products/${productId}"
+curl -H  "accept: application/json" -X DELETE http://localhost:3000/products/${productId}
 ```
 
 ### Search
@@ -128,10 +128,10 @@ Search by
 criterion : - color, name, brand
 value : filter
 ```sh
-curl -H "Accept: application/json" -X GET http://localhost:3000/search?criterion=color&value=red
+curl -H "accept: application/json" -X GET http://localhost:3000/search?criterion=color&value=red
 ```
 
 Get all of search by client
 ```sh
-curl -H  "accept: application/json" -X GET "http://localhost:3000/sales-topic"
+curl -H  "accept: application/json" -X GET http://localhost:3000/sales-topic
 ```
